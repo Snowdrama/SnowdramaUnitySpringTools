@@ -31,12 +31,19 @@ namespace Snowdrama.Spring
             springCollection.SetTarget(xID, position.x);
             springCollection.SetTarget(yID, position.y);
         }
+
         public void SetCurrentValue(Vector2 position)
         {
             springCollection.SetValue(xID, position.x);
             springCollection.SetValue(yID, position.y);
         }
-        
+
+        public void SetSpringConfig(SpringConfiguration config)
+        {
+            springCollection.SetSpringConfig(xID, config);
+            springCollection.SetSpringConfig(yID, config);
+        }
+
         public Vector2 GetSpringPosition()
         {
             return springPosition;

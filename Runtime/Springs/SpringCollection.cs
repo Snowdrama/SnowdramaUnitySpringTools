@@ -11,18 +11,18 @@ namespace Snowdrama.Spring
     {
         public int Count => _states.Count;
 
-        private List<SpringConfiguration> _springs;
+        private List<SpringConfiguration> _springConfigs;
         private List<SpringState> _states;
 
         public SpringCollection()
         {
-            _springs = new List<SpringConfiguration>();
+            _springConfigs = new List<SpringConfiguration>();
             _states = new List<SpringState>();
         }
 
         public SpringCollection(int capacity)
         {
-            _springs = new List<SpringConfiguration>(capacity);
+            _springConfigs = new List<SpringConfiguration>(capacity);
             _states = new List<SpringState>(capacity);
         }
 
@@ -31,7 +31,7 @@ namespace Snowdrama.Spring
             var id = Count;
             var state = new SpringState(initialValue, initialValue, 0f);
 
-            _springs.Add(spring);
+            _springConfigs.Add(spring);
             _states.Add(state);
 
             return id;
@@ -78,15 +78,15 @@ namespace Snowdrama.Spring
             _states[id] = state;
         }
 
-        public void UpdateFloatSpring(int id, SpringConfiguration spring)
+        public void SetSpringConfig(int id, SpringConfiguration springConfig)
         {
-            _springs[id] = spring;
+            _springConfigs[id] = springConfig;
         }
 
         private void UpdateValue(int id, float deltaTime)
         {
             var state = _states[id];
-            var config = _springs[id];
+            var config = _springConfigs[id];
 
             while (deltaTime >= Mathf.Epsilon)
             {

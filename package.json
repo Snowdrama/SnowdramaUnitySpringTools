@@ -1,6 +1,6 @@
 {
   "name": "com.snowdrama.springs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A package of spring tools",
   "displayName": "Snowdrama Spring Tools",
   "unity": "2019.1",
@@ -9,6 +9,13 @@
     "email": "SnowdramaGames@gmail.com",
     "url": "http://www.snowdrama.net"
   },
+  "dependencies": {},
   "type": "utility",
-  "samples": []
+  "samples": [
+    {
+      "displayName": "Spring Example",
+      "description": "Contains an example for several springs and comparisons betwen mass friction and tension",
+      "path": "Samples~/SpringExample"
+    }
+  ]
 }

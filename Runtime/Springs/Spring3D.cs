@@ -44,6 +44,13 @@ namespace Snowdrama.Spring
             springCollection.SetValue(zID, position.z);
         }
 
+        public void SetSpringConfig(SpringConfiguration config)
+        {
+            springCollection.SetSpringConfig(xID, config);
+            springCollection.SetSpringConfig(yID, config);
+            springCollection.SetSpringConfig(zID, config);
+        }
+
         public Vector3 GetSpringPosition()
         {
             return springPosition;

@@ -56,9 +56,9 @@ namespace Snowdrama.Spring
             _state = state;
         }
 
-        public void SetNewSpring(SpringConfiguration spring)
+        public void SetSpringConfig(SpringConfiguration config)
         {
-            _spring = spring;
+            _spring = config;
         }
 
         public void Update(float deltaTime)
