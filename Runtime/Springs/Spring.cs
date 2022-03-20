@@ -8,9 +8,9 @@ namespace Snowdrama.Spring
     {
         private SpringConfiguration _spring;
         private SpringState _state;
-        public Spring(float initialValue, SpringConfigurationObject springObject)
+        public Spring(float initialValue, SpringConfiguration springObject)
         {
-            _spring = springObject.GetConfiguration();
+            _spring = springObject;
             _state = new SpringState(initialValue, initialValue, 0f);
         }
         public bool IsResting()
@@ -56,17 +56,15 @@ namespace Snowdrama.Spring
             _state = state;
         }
 
-        public void SetNewSpring(SpringConfigurationObject spring)
+        public void SetNewSpring(SpringConfiguration spring)
         {
-            var config = spring.GetConfiguration();
-            _spring = config;
+            _spring = spring;
         }
 
         public void Update(float deltaTime)
         {
             var state = _state;
             var config = _spring;
-
             while (deltaTime >= Mathf.Epsilon)
             {
                 var dt = Mathf.Min(deltaTime, 0.016f);
@@ -98,12 +96,10 @@ namespace Snowdrama.Spring
                         return;
                     }
                 }
-
                 deltaTime -= dt;
             }
 
             state.Resting = false;
-
             _state = state;
         }
     }

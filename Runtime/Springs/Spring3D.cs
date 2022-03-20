@@ -9,12 +9,15 @@ namespace Snowdrama.Spring
         SpringCollection springCollection;
         Vector3 springPosition;
 
+        Spring xSpring;
+        Spring ySpring;
+        Spring Spring;
         int xID;
         int yID;
         int zID;
-        public Spring3D(SpringConfigurationObject config, Vector3 initialValue = new Vector3())
+        public Spring3D(SpringConfiguration config, Vector3 initialValue = new Vector3())
         {
-            springCollection = new SpringCollection();
+            springCollection = new SpringCollection(3);
             xID = springCollection.Add(initialValue.x, config);
             yID = springCollection.Add(initialValue.y, config);
             zID = springCollection.Add(initialValue.z, config);

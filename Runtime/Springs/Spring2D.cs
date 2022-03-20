@@ -12,7 +12,7 @@ namespace Snowdrama.Spring
 
         int xID;
         int yID;
-        public Spring2D(SpringConfigurationObject config, Vector2 initialValue = new Vector2())
+        public Spring2D(SpringConfiguration config, Vector2 initialValue = new Vector2())
         {
             springCollection = new SpringCollection();
             xID = springCollection.Add(initialValue.x, config);
