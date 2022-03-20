@@ -1,0 +1,15 @@
+{
+  "name": "com.snowdrama.springs",
+  "version": "0.1.0",
+  "description": "A package of spring tools",
+  "displayName": "Snowdrama Spring Tools",
+  "unity": "2019.1",
+  "author": {
+    "name": "John 'Snowdrama' Close",
+    "email": "SnowdramaGames@gmail.com",
+    "url": "http://www.snowdrama.net"
+  },
+  "dependencies": {},
+  "type": "utility",
+  "samples": []
+}
