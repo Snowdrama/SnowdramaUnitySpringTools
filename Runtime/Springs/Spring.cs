@@ -6,11 +6,11 @@ namespace Snowdrama.Spring
 {
     public class Spring
     {
-        private SpringConfiguration _spring;
+        private SpringConfigurationData _spring;
         private SpringState _state;
-        public Spring(float initialValue, SpringConfiguration springObject)
+        public Spring(float initialValue, SpringConfiguration springConfig)
         {
-            _spring = springObject;
+            _spring = springConfig.GetConfigData();
             _state = new SpringState(initialValue, initialValue, 0f);
         }
         public bool IsResting()
@@ -56,9 +56,9 @@ namespace Snowdrama.Spring
             _state = state;
         }
 
-        public void SetSpringConfig(SpringConfiguration config)
+        public void SetSpringConfig(SpringConfiguration springConfig)
         {
-            _spring = config;
+            _spring = springConfig.GetConfigData();
         }
 
         public void Update(float deltaTime)
