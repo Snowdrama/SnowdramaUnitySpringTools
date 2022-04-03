@@ -45,7 +45,14 @@ namespace Snowdrama.Spring
         public void SetTarget(float value)
         {
             var state = _state;
-            state.Target = value;
+            if (_spring.Clamp)
+            {
+                state.Target = Mathf.Clamp(value, _spring.ClampRange.x, _spring.ClampRange.y);
+            }
+            else
+            {
+                state.Target = value;
+            }
             _state = state;
         }
 
@@ -76,13 +83,15 @@ namespace Snowdrama.Spring
 
                 if (config.Clamp)
                 {
-                    if (Mathf.Abs(state.Current - state.Target) < config.Precision)
+
+                    if (state.Current < config.ClampRange.x)
                     {
-                        state.Current = state.Target;
-                        state.Velocity = 0f;
-                        state.Resting = true;
-                        _state = state;
-                        return;
+                        state.Current = config.ClampRange.x;
+                    }
+                    
+                    if(state.Current > config.ClampRange.y)
+                    {
+                        state.Current = config.ClampRange.y;
                     }
                 }
                 else

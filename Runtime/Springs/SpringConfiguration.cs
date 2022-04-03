@@ -16,10 +16,11 @@ namespace Snowdrama.Spring
         public float Friction = 26.0f;
         public float Precision = 0.01f;
         public bool Clamp = false;
+        public Vector2 ClampRange;
 
         public SpringConfigurationData GetConfigData()
         {
-            return new SpringConfigurationData(Mass, Tension, Friction, Precision, Clamp);
+            return new SpringConfigurationData(Mass, Tension, Friction, Precision, Clamp, ClampRange);
         }
     }
     
@@ -32,13 +33,15 @@ namespace Snowdrama.Spring
         public float Friction;
         public float Precision;
         public bool Clamp;
-        public SpringConfigurationData(float Mass = 1f, float Tension = 170.0f, float Friction = 26.0f, float Precision = 0.01f, bool Clamp = false)
+        public Vector2 ClampRange;
+        public SpringConfigurationData(float Mass = 1f, float Tension = 170.0f, float Friction = 26.0f, float Precision = 0.01f, bool Clamp = false, Vector2 ClampRange = new Vector2())
         {
             this.Mass = Mass;
             this.Tension = Tension;
             this.Friction = Friction;
             this.Precision = Precision;
             this.Clamp = Clamp;
+            this.ClampRange = ClampRange;
         }
     }
 
