@@ -8,7 +8,9 @@ namespace Snowdrama.Spring
     public class Spring2D
     {
         SpringCollection springCollection;
-        Vector2 springPosition;
+        Vector2 value;
+        Vector2 target;
+        Vector2 velocity;
 
         int xID;
         int yID;
@@ -22,20 +24,26 @@ namespace Snowdrama.Spring
         public void Update(float deltaTime)
         {
             springCollection.Update(deltaTime);
-            springPosition.x = springCollection.GetValue(xID);
-            springPosition.y = springCollection.GetValue(yID);
+            value.x = springCollection.GetValue(xID);
+            value.y = springCollection.GetValue(yID);
         }
 
-        public void SetPositionTarget(Vector2 position)
+        public void SetTarget(Vector2 position)
         {
             springCollection.SetTarget(xID, position.x);
             springCollection.SetTarget(yID, position.y);
         }
 
-        public void SetCurrentValue(Vector2 position)
+        public void SetValue(Vector2 position)
         {
             springCollection.SetValue(xID, position.x);
             springCollection.SetValue(yID, position.y);
+        }
+
+        public void SetVelocity(Vector2 position)
+        {
+            springCollection.SetVelocity(xID, position.x);
+            springCollection.SetVelocity(yID, position.y);
         }
 
         public void SetSpringConfig(SpringConfiguration config)
@@ -43,10 +51,25 @@ namespace Snowdrama.Spring
             springCollection.SetSpringConfig(xID, config);
             springCollection.SetSpringConfig(yID, config);
         }
-
-        public Vector2 GetSpringPosition()
+        public Vector3 GetTarget()
         {
-            return springPosition;
+            target.x = springCollection.GetTarget(xID);
+            target.y = springCollection.GetTarget(yID);
+            return value;
+        }
+
+        public Vector3 GetValue()
+        {
+            value.x = springCollection.GetValue(xID);
+            value.y = springCollection.GetValue(yID);
+            return value;
+        }
+
+        public Vector3 GetVelocity()
+        {
+            velocity.x = springCollection.GetVelocity(xID);
+            velocity.y = springCollection.GetVelocity(yID);
+            return velocity;
         }
     }
 }

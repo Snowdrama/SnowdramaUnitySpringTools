@@ -7,11 +7,10 @@ namespace Snowdrama.Spring
     public class Spring3D
     {
         SpringCollection springCollection;
-        Vector3 springPosition;
+        Vector3 value;
+        Vector3 target;
+        Vector3 velocity;
 
-        Spring xSpring;
-        Spring ySpring;
-        Spring Spring;
         int xID;
         int yID;
         int zID;
@@ -26,22 +25,41 @@ namespace Snowdrama.Spring
         public void Update(float deltaTime)
         {
             springCollection.Update(deltaTime);
-            springPosition.x = springCollection.GetValue(xID);
-            springPosition.y = springCollection.GetValue(yID);
-            springPosition.z = springCollection.GetValue(zID);
+            value.x = springCollection.GetValue(xID);
+            value.y = springCollection.GetValue(yID);
+            value.z = springCollection.GetValue(zID);
+
+            target.x = springCollection.GetTarget(xID);
+            target.y = springCollection.GetTarget(yID);
+            target.z = springCollection.GetTarget(zID);
+
+            velocity.x = springCollection.GetVelocity(xID);
+            velocity.y = springCollection.GetVelocity(yID);
+            velocity.z = springCollection.GetVelocity(zID);
         }
 
-        public void SetPositionTarget(Vector3 position)
+        public void SetTarget(Vector3 target)
         {
-            springCollection.SetTarget(xID, position.x);
-            springCollection.SetTarget(yID, position.y);
-            springCollection.SetTarget(zID, position.z);
+            this.target = target;
+            springCollection.SetTarget(xID, target.x);
+            springCollection.SetTarget(yID, target.y);
+            springCollection.SetTarget(zID, target.z);
         }
-        public void SetCurrentValue(Vector3 position)
+
+        public void SetValue(Vector3 value)
         {
-            springCollection.SetValue(xID, position.x);
-            springCollection.SetValue(yID, position.y);
-            springCollection.SetValue(zID, position.z);
+            this.value = value;
+            springCollection.SetValue(xID, value.x);
+            springCollection.SetValue(yID, value.y);
+            springCollection.SetValue(zID, value.z);
+        }
+
+        public void SetVelocity(Vector3 velocity)
+        {
+            this.velocity = velocity;
+            springCollection.SetVelocity(xID, velocity.x);
+            springCollection.SetVelocity(yID, velocity.y);
+            springCollection.SetVelocity(zID, velocity.z);
         }
 
         public void SetSpringConfig(SpringConfiguration config)
@@ -51,9 +69,28 @@ namespace Snowdrama.Spring
             springCollection.SetSpringConfig(zID, config);
         }
 
-        public Vector3 GetSpringPosition()
+        public Vector3 GetTarget()
         {
-            return springPosition;
+            target.x = springCollection.GetTarget(xID);
+            target.y = springCollection.GetTarget(yID);
+            target.z = springCollection.GetTarget(zID);
+            return value;
+        }
+
+        public Vector3 GetValue()
+        {
+            value.x = springCollection.GetValue(xID);
+            value.y = springCollection.GetValue(yID);
+            value.z = springCollection.GetValue(zID);
+            return value;
+        }
+
+        public Vector3 GetVelocity()
+        {
+            velocity.x = springCollection.GetVelocity(xID);
+            velocity.y = springCollection.GetVelocity(yID);
+            velocity.z = springCollection.GetVelocity(zID);
+            return velocity;
         }
     }
 }
