@@ -16,4 +16,5 @@ MonoBehaviour:
   Tension: 170
   Friction: 26
   Precision: 0.01
-  Clamp: 1
+  Clamp: 0
+  ClampRange: {x: 0, y: 0}
