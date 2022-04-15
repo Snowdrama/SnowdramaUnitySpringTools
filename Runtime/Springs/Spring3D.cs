@@ -6,7 +6,7 @@ namespace Snowdrama.Spring
 {
     public class Spring3D
     {
-        SpringCollection springCollection;
+        SpringList springCollection;
         Vector3 value;
         Vector3 target;
         Vector3 velocity;
@@ -16,7 +16,7 @@ namespace Snowdrama.Spring
         int zID;
         public Spring3D(SpringConfiguration config, Vector3 initialValue = new Vector3())
         {
-            springCollection = new SpringCollection(3);
+            springCollection = new SpringList(3);
             xID = springCollection.Add(initialValue.x, config);
             yID = springCollection.Add(initialValue.y, config);
             zID = springCollection.Add(initialValue.z, config);

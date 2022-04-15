@@ -7,7 +7,7 @@ namespace Snowdrama.Spring
 {
     public class Spring2D
     {
-        SpringCollection springCollection;
+        SpringList springCollection;
         Vector2 value;
         Vector2 target;
         Vector2 velocity;
@@ -16,7 +16,7 @@ namespace Snowdrama.Spring
         int yID;
         public Spring2D(SpringConfiguration config, Vector2 initialValue = new Vector2())
         {
-            springCollection = new SpringCollection();
+            springCollection = new SpringList();
             xID = springCollection.Add(initialValue.x, config);
             yID = springCollection.Add(initialValue.y, config);
         }

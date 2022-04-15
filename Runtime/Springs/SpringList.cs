@@ -1,5 +1,4 @@
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,86 +7,86 @@ using UnityEngine;
 
 namespace Snowdrama.Spring
 {
-    public class SpringCollection
+    public class SpringList
     {
         public int Count => _states.Count;
 
-        private Dictionary<string, SpringConfigurationData> _springConfigs;
-        private Dictionary<string, SpringState> _states;
+        private List<SpringConfigurationData> _springConfigs;
+        private List<SpringState> _states;
 
-        public SpringCollection()
+        public SpringList()
         {
-            _springConfigs = new Dictionary<string, SpringConfigurationData>();
-            _states = new Dictionary<string, SpringState>();
+            _springConfigs = new List<SpringConfigurationData>();
+            _states = new List<SpringState>();
         }
 
-        public SpringCollection(int capacity)
+        public SpringList(int capacity)
         {
-            _springConfigs = new Dictionary<string, SpringConfigurationData>(capacity);
-            _states = new Dictionary<string, SpringState>(capacity);
+            _springConfigs = new List<SpringConfigurationData>(capacity);
+            _states = new List<SpringState>(capacity);
         }
 
-        public int Add(string springName, float initialValue, SpringConfiguration springConfig)
+        public int Add(float initialValue, SpringConfiguration springConfig)
         {
             var id = Count;
             var state = new SpringState(initialValue, initialValue, 0f);
 
-            _springConfigs.Add(springName, springConfig.GetConfigData());
-            _states.Add(springName, state);
+            _springConfigs.Add(springConfig.GetConfigData());
+            _states.Add(state);
 
             return id;
         }
-        public bool IsResting(string id)
+        public bool IsResting(int id)
         {
             return _states[id].Resting;
         }
 
-        public float GetValue(string id)
+        public float GetValue(int id)
         {
             return _states[id].Current;
         }
 
-        public float GetTarget(string id)
+        public float GetTarget(int id)
         {
             return _states[id].Target;
         }
 
-        public float GetVelocity(string id)
+        public float GetVelocity(int id)
         {
             return _states[id].Velocity;
         }
 
-        public void SetValue(string name, float value)
+        public void SetValue(int id, float value)
         {
-            var state = _states[name];
+            var state = _states[id];
             state.Current = value;
             state.Velocity = 0f;
-            _states[name] = state;
+            _states[id] = state;
         }
 
-        public void SetTarget(string name, float value)
+        public void SetTarget(int id, float value)
         {
-            var state = _states[name];
+            var state = _states[id];
             state.Target = value;
-            _states[name] = state;
+            _states[id] = state;
         }
 
-        public void SetVelocity(string name, float value)
+        public void SetVelocity(int id, float value)
         {
-            var state = _states[name];
+            var state = _states[id];
             state.Velocity = value;
-            _states[name] = state;
+            _states[id] = state;
         }
 
-        public void SetSpringConfig(string name, SpringConfiguration springConfig)
+        public void SetSpringConfig(int id, SpringConfiguration springConfig)
         {
-            _springConfigs[name] = springConfig.GetConfigData();
+            _springConfigs[id] = springConfig.GetConfigData();
         }
 
-        private void UpdateValue(string name, float deltaTime)
+        private void UpdateValue(int id, float deltaTime)
         {
-            var state = _states[name];
-            var config = _springConfigs[name];
+            var state = _states[id];
+            var config = _springConfigs[id];
 
             while (deltaTime >= Mathf.Epsilon)
             {
@@ -106,7 +105,7 @@ namespace Snowdrama.Spring
                         state.Current = state.Target;
                         state.Velocity = 0f;
                         state.Resting = true;
-                        _states[name] = state;
+                        _states[id] = state;
                         return;
                     }
                 }
@@ -117,7 +116,7 @@ namespace Snowdrama.Spring
                         state.Current = state.Target;
                         state.Velocity = 0f;
                         state.Resting = true;
-                        _states[name] = state;
+                        _states[id] = state;
                         return;
                     }
                 }
@@ -127,13 +126,13 @@ namespace Snowdrama.Spring
 
             state.Resting = false;
 
-            _states[name] = state;
+            _states[id] = state;
         }
         public void Update(float deltaTime)
         {
-            foreach (var key in _states.Keys)
+            for (var i = 0; i < Count; i++)
             {
-                UpdateValue(key, deltaTime);
+                UpdateValue(i, deltaTime);
             }
         }
     }
