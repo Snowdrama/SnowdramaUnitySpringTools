@@ -20,7 +20,7 @@ public class ExampleSpringUse : MonoBehaviour
     void Start()
     {
         _positionSpring = new Snowdrama.Spring.Spring3D(springConfig, start);
-        _positionSpring.SetPositionTarget(end);
+        _positionSpring.SetTarget(end);
         positionToggle = true;
         _timer = 0;
         displayText = text.text;
@@ -40,11 +40,11 @@ public class ExampleSpringUse : MonoBehaviour
             positionToggle = !positionToggle;
             if (positionToggle)
             {
-                _positionSpring.SetPositionTarget(end);
+                _positionSpring.SetTarget(end);
             }
             else
             {
-                _positionSpring.SetPositionTarget(start);
+                _positionSpring.SetTarget(start);
                 animationCount++;
             }
         }
@@ -61,6 +61,6 @@ public class ExampleSpringUse : MonoBehaviour
             _positionSpring.SetSpringConfig(springConfig);
             text.text = string.Format(displayText, springConfig.Tension, springConfig.Mass, springConfig.Friction);
         }
-        this.transform.position = _positionSpring.GetSpringPosition();
+        this.transform.position = _positionSpring.GetValue();
     }
 }
