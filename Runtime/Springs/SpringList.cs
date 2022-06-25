@@ -98,33 +98,27 @@ namespace Snowdrama.Spring
                 state.Velocity = state.Velocity + (acceleration * dt);
                 state.Current = state.Current + (state.Velocity * dt);
 
-                if (config.Clamp)
+                if (Mathf.Abs(state.Velocity) < config.Precision && Mathf.Abs(state.Current - state.Target) < config.Precision)
                 {
-                    if (Mathf.Abs(state.Current - state.Target) < config.Precision)
-                    {
-                        state.Current = state.Target;
-                        state.Velocity = 0f;
-                        state.Resting = true;
-                        _states[id] = state;
-                        return;
-                    }
+                    state.Current = state.Target;
+                    state.Velocity = 0f;
+                    state.Resting = true;
+                    _states[id] = state;
+                    return;
                 }
                 else
                 {
-                    if (Mathf.Abs(state.Velocity) < config.Precision && Mathf.Abs(state.Current - state.Target) < config.Precision)
-                    {
-                        state.Current = state.Target;
-                        state.Velocity = 0f;
-                        state.Resting = true;
-                        _states[id] = state;
-                        return;
-                    }
+                    state.Resting = false;
+                }
+
+                if (config.Clamp)
+                {
+                    state.Current = Mathf.Clamp(state.Current, config.ClampRange.x, config.ClampRange.y);
                 }
 
                 deltaTime -= dt;
             }
 
-            state.Resting = false;
 
             _states[id] = state;
         }
