@@ -4,6 +4,7 @@ A package of the spring tools I use in unity
 ![Angle Spring Tool](https://github.com/Snowdrama/SnowdramaUnitySpringTools/blob/main/Resources~/Unity_SpringExample.gif)
 ![Angle Spring Tool](https://github.com/Snowdrama/SnowdramaUnitySpringTools/blob/main/Resources~/Unity_AngleSpin.gif)
 ![Angle Spring Tool](https://github.com/Snowdrama/SnowdramaUnitySpringTools/blob/main/Resources~/Unity_ColorSpring.gif)
+![Angle Spring Tool](https://github.com/Snowdrama/SnowdramaUnitySpringTools/blob/main/Resources~/Unity_ScaleSpring.gif)
 
 # Requirements & Disclaimer
 In theory it works with earlier versions but I have tested against 2020.3.19f1(current LTS version) but I have it set to work with 2019.1
