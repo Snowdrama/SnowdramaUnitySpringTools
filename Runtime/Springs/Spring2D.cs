@@ -10,39 +10,53 @@ namespace Snowdrama.Spring
         SpringList springCollection;
         int xID;
         int yID;
-        
-        public Vector2 Value {
-            get {
+
+        public Vector2 Value
+        {
+            get
+            {
                 return new Vector2(springCollection.GetValue(xID), springCollection.GetValue(yID));
             }
-            set {
-                return new Vector2(springCollection.SetValue(xID, value.x), springCollection.SetValue(yID, value.y));
+            set
+            {
+                springCollection.SetValue(xID, value.x);
+                springCollection.SetValue(yID, value.y);
             }
         }
-        public Vector2 Target {
-            get {
+        public Vector2 Target
+        {
+            get
+            {
                 return new Vector2(springCollection.GetTarget(xID), springCollection.GetTarget(yID));
             }
-            set {
-                return new Vector2(springCollection.SetTarget(xID, value.x), springCollection.SetTarget(yID, value.y));
+            set
+            {
+                springCollection.SetTarget(xID, value.x);
+                springCollection.SetTarget(yID, value.y);
             }
         }
-        public Vector2 Velocity {
-            get {
+        public Vector2 Velocity
+        {
+            get
+            {
                 return new Vector2(springCollection.GetVelocity(xID), springCollection.GetVelocity(yID));
             }
-            set {
-                return new Vector2(springCollection.SetVelocity(xID, value.x), springCollection.SetVelocity(yID, value.y));
+            set
+            {
+                springCollection.SetVelocity(xID, value.x);
+                springCollection.SetVelocity(yID, value.y);
             }
         }
-        
-        public SpringConfig SpringConfig {
-            set{
+
+        public SpringConfiguration SpringConfig
+        {
+            set
+            {
                 springCollection.SetSpringConfig(xID, value);
                 springCollection.SetSpringConfig(yID, value);
             }
         }
-        
+
         public Spring2D(SpringConfiguration config, Vector2 initialValue = new Vector2())
         {
             springCollection = new SpringList();
