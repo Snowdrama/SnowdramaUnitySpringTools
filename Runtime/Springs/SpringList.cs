@@ -45,7 +45,7 @@ namespace Snowdrama.Spring
         {
             return _states[id].Current;
         }
-
+        
         public float GetTarget(int id)
         {
             return _states[id].Target;

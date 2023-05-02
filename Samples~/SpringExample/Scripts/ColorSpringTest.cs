@@ -12,7 +12,7 @@ public class ColorSpringTest : MonoBehaviour
     public Color activeTarget;
     public SpringConfiguration springConfiguration;
 
-    private bool positionToggle;
+    private bool positionToggle = true;
     private float _timer;
     private Renderer meshRenderer;
     // Start is called before the first frame update
@@ -34,14 +34,14 @@ public class ColorSpringTest : MonoBehaviour
             if (positionToggle)
             {
                 activeTarget = colorStart;
-                colorSpring.SetTarget(colorStart);
+                colorSpring.Target = colorStart;
             }
             else
             {
                 activeTarget = colorEnd;
-                colorSpring.SetTarget(colorEnd);
+                colorSpring.Target = colorEnd;
             }
         }
-        meshRenderer.material.color = colorSpring.GetValue();
+        meshRenderer.material.color = colorSpring.Value;
     }
 }

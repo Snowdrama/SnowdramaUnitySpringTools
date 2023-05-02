@@ -57,7 +57,7 @@ namespace Snowdrama.Spring
             }
         }
 
-        public Spring2D(SpringConfiguration config, Vector2 initialValue = new Vector2())
+        public Spring2D(SpringConfiguration config, Vector2 initialValue = default)
         {
             springCollection = new SpringList();
             xID = springCollection.Add(initialValue.x, config);

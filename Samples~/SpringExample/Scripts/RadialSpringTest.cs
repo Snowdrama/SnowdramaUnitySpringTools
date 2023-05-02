@@ -9,8 +9,7 @@ public class RadialSpringTest : MonoBehaviour
     public SpringRadial radialSpring;
     public bool run;
     public float targetToSet;
-    [Header("Debug:")]
-    public float debugOut;
+    private float _timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +20,13 @@ public class RadialSpringTest : MonoBehaviour
     void Update()
     {
         radialSpring.Update(Time.deltaTime);
-        if (run)
+        _timer += Time.deltaTime;
+        if (_timer > 2.0f)
         {
-            run = false;
-            radialSpring.SetTarget(targetToSet);
+            _timer -= 2.0f;
+            radialSpring.Target = Random.Range(0.0f, 360.0f);
         }
-        debugOut = radialSpring.GetValue();
 
-        this.transform.rotation = Quaternion.AngleAxis(debugOut, Vector3.forward);
+        this.transform.rotation = Quaternion.AngleAxis(radialSpring.Value, Vector3.forward);
     }
 }
